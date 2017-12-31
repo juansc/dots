@@ -1,0 +1,76 @@
+alias ls='ls -Gp'
+alias ll='ls -l'
+alias p='python'
+alias psql="'/Applications/Postgres.app/Contents/Versions/9.5/bin'/psql -p5432"
+export CLICOLOR=1
+alias tree='tree -A'
+alias dunnet='emacs -batch -l dunnet'
+# Run httpie with an hour long timeout. Useful to debugging web servers locally
+alias httpd='http --timeout=3600'
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+
+function encode() { echo -n $@ | perl -pe's/([^-_.~A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg'; }
+
+export PATH=/usr/local/bin:$PATH
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+
+if [ -f ~/.git-completion.bash ]; then
+
+    source ~/.git-completion.bash
+fi
+
+export PS1="JSC:[\W]> "
+
+export WORKON_HOME=~/virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
+source /usr/local/bin/virtualenvwrapper.sh
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
+# Expands ctrl-r history
+shopt -s histappend                      # append to history, don't overwrite
+export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
+export HISTSIZE=100000                   # big big history
+export HISTFILESIZE=100000               # big big history
+
+# Adds forward i search
+stty -ixon
+
+alias virtualenv3='/usr/local/lib/python3.5/site-packages/virtualenv'
+
+export GOPATH=$HOME/git/go
+export GOROOT=/usr/local/opt/go/libexec
+
+export PATH=$PATH:$GOPATH/bin
+
+STATSD_PATH='/opt/statsd/'
+alias statsd='node $STATSD_PATH/stats.js '
+alias cdgo='cd $GOPATH'
+
+
+alias cdemb='cd ~/git/embrace/'
+
+function title() {
+    echo -ne "\033]0;"$*"\007"
+}
+
+export FIGNORE=$FIGNORE:DS_Store
+alias gw='./gradlew'
+# Grep options: Highlights matches.
+export GREP_OPTIONS='--color=auto'
+
+source ~/git/embrace/embrace-developer-extensions/edx
+
+# Creates logbook
+function lb() {
+    vim ~/logbook/$(date '+%Y-%m-%d').md
+}
+
+# Setting PATH for Python 3.5
+# The orginal version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+export PATH
+
+unset GOROOT
