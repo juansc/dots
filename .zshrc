@@ -1,4 +1,4 @@
-alias git=hub
+# alias git=hub
 alias gc="git checkout"
 alias gcm="git checkout master"
 alias gpull="git pull"
@@ -76,7 +76,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting git-flow-completion)
 source $ZSH/oh-my-zsh.sh
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -100,38 +100,27 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-function powerline_precmd() {
-    PS1="$(powerline-shell --shell zsh $?)"
-}
-
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
-
-if [ "$TERM" != "linux" ]; then
-    install_powerline_precmd
-fi
-
-
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/Cellar/python/2.7.14/bin/python2.7
-#export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-
-export WORKON_HOME=$HOME/.virtualenvs
-. /usr/local/bin/virtualenvwrapper.sh
-
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# function powerline_precmd() {
+#     PS1="$(powerline-shell --shell zsh $?)"
+# }
+# 
+# function install_powerline_precmd() {
+#   for s in "${precmd_functions[@]}"; do
+#     if [ "$s" = "powerline_precmd" ]; then
+#       return
+#     fi
+#   done
+#   precmd_functions+=(powerline_precmd)
+# }
+# 
+# if [ "$TERM" != "linux" ]; then
+#     install_powerline_precmd
+# fi
 
 # Go related stuff
 export GOPATH=~/git/go
 alias goemb="cd $GOPATH/src/github.com/embrace-io/go"
 export PATH=$PATH:$GOPATH/bin
-
-source ~/.git-flow-completion.zsh
 
  # bintray stuff
 export BINTRAY_USER=juansc
