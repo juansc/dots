@@ -22,7 +22,11 @@
   cm = commit
   co = checkout
   br = branch
-  last = log -n 1
+  last = log --oneline -n 1
+  minlog = log --oneline
+  statlog = log --stat
+  taglist = tag -l --sort=-v:refname
+  tagl = tag -l --sort=-v:refname
 [credential]
 	helper = osxkeychain
 [user]
@@ -30,3 +34,12 @@
 	email = juanscarrillo23@gmail.com
 [core]
 	excludesfile = /Users/juansc/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[push]
+	followTags = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+
