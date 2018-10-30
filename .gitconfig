@@ -1,22 +1,24 @@
 [color]
   branch = auto
-	ui = auto
+	ui = true
 [color "branch"]
 	current = yellow bold
 	local = white
 	remote = yellow dim
 [color "diff"]
-	meta = white bold
+	meta = yellow
 	frag = magenta bold
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+	commit = yellow bold
 [color "status"]
 	added = cyan bold
   branch = yellow bold
 	changed = red bold
 	untracked = magenta bold
 [alias]
+  cr = checkout -b
   df = diff
   st = status
   cm = commit
