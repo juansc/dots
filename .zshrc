@@ -9,8 +9,8 @@ alias brews='brew list -1'
 alias bubo='brew update && brew outdated'
 alias bubc='brew upgrade && brew cleanup'
 alias bubu='bubo && bubc'
-alias tunnel='python2 ~/git/embrace/devops/scripts/tunnel.py start'
-alias close_tunnel='python2 ~/git/embrace/devops/scripts/tunnel.py stop'
+alias tunnel='python ~/git/embrace/devops/scripts/tunnel.py start'
+alias close_tunnel='python ~/git/embrace/devops/scripts/tunnel.py stop'
 alias editdocker='vim ~/git/embrace/dev/docker-compose.yml'
 #alias cdemb='cd ~/git/embrace && cd '
 . ~/z/z.sh
@@ -43,8 +43,8 @@ export ZSH=/Users/juansc/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-# ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 # Uncomment the following line to use hyphen-insensitive completion. Case
@@ -129,4 +129,21 @@ export BINTRAY_KEY=ec07717713e89baefe6b1e8a0d8dd662c17132a9
 
 # edx tools
 source $EMBRACE_DIR/embrace-developer-extensions/edx
+
+# Only show the last dir
+POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last
+# Don't show tag for current commit
+POWERLEVEL9K_VCS_HIDE_TAGS=true
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+
+function gocheck() {
+  goemb
+  go vet ./... && go test ./... && megacheck -unused.exported=false ./...
+}
+
+export PATH=$HOME/Library/Python/2.7/bin:$PATH
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
