@@ -24,6 +24,7 @@
   cm = commit
   co = checkout
   br = branch
+  pn = push origin -u HEAD
   last = log --oneline -n 1
   minlog = log --oneline
   statlog = log --stat
