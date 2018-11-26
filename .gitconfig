@@ -36,7 +36,7 @@
 	name = Juan
 	email = juanscarrillo23@gmail.com
 [core]
-	excludesfile = /Users/juansc/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [push]
 	followTags = true
