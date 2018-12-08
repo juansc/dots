@@ -147,3 +147,12 @@ export PATH=$HOME/Library/Python/2.7/bin:$PATH
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+# Use ripgrep with sed if installed.
+# Usage: rgs OldPattern NewPattern
+#        rgs apricott apricot
+# Courtesy of @arkie
+if [ -x "$(command -v rg)" ]; then
+  rgs(){
+    rg -l $1 | xargs sed -i '' "s$1$2g"
+  }
+fi
