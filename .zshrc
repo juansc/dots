@@ -1,3 +1,4 @@
+export PATH="/usr/local/bin:/usr/bin/git:/usr/bin:/usr/local/sbin:$PATH"
 # alias git=hub
 alias gc="git checkout"
 alias gcm="git checkout master"
@@ -139,13 +140,22 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
 function gocheck() {
   goemb
-  go vet ./... && go test ./... && megacheck -unused.exported=false ./...
+  go vet ./... && go test ./... 
+  tput setaf 1; megacheck -unused.exported=false ./...
 }
 
 export PATH=$HOME/Library/Python/2.7/bin:$PATH
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
 # Use ripgrep with sed if installed.
 # Usage: rgs OldPattern NewPattern
@@ -156,3 +166,4 @@ if [ -x "$(command -v rg)" ]; then
     rg -l $1 | xargs sed -i '' "s$1$2g"
   }
 fi
+
