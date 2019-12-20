@@ -23,14 +23,19 @@
 	co = checkout
 	cr = checkout -b
 	df = diff
+  fe = fetch -tpP
+	dfcm = diff --staged
 	last = log --oneline -n 1
 	minlog = log --oneline
+	ml = log --oneline
 	pn = push origin -u HEAD
-	pu = push
+	pl = pull
+	ps = push
 	st = status
 	statlog = log --stat
+	sl = log --stat
 	taglist = tag -l --sort=-v:refname
-	tagl = tag -l --sort=-v:refname
+	tl = tag -l --sort=-v:refname
 [credential]
 	helper = osxkeychain
 [user]
@@ -38,8 +43,10 @@
 	name = Juan
 [core]
 	excludesfile = /Users/juansc/.gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = diff-so-fancy | less --tabs=4 -RFX
+#	pager = less --tabs=4 -RFX
 [push]
+  default = current
 	followTags = true
 [color "diff-highlight"]
 	newNormal = green bold
