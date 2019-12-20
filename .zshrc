@@ -140,8 +140,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
 function gocheck() {
   goemb
-  go vet ./... && go test ./... 
-  tput setaf 1; megacheck -unused.exported=false ./...
+  go vet ./... && go test ./... -count=1 && staticcheck ./...
 }
 
 export PATH=$HOME/Library/Python/2.7/bin:$PATH
