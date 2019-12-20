@@ -20,4 +20,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 git clone https://github.com/bobthecow/git-flow-completion ~/.oh-my-zsh/custom/plugins/git-flow-completion
 
-
+# Go Setup
+mkdir -p ~/git/go/src/github.com/embrace-io/
+ln -s ~/git/embrace/go ~/git/go/src/github.com/embrace-io/
