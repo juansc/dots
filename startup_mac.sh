@@ -21,5 +21,10 @@ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/theme
 git clone https://github.com/bobthecow/git-flow-completion ~/.oh-my-zsh/custom/plugins/git-flow-completion
 
 # Go Setup
+export GO_TAR=/tmp/go.tar.gz
+curl -L https://dl.google.com/go/go1.13.5.darwin-amd64.tar.gz --output ${GO_TAR}
+sudo tar -C /usr/local -xvzf ${GO_TAR}
+rm ${GO_TAR}
+
 mkdir -p ~/git/go/src/github.com/embrace-io/
 ln -s ~/git/embrace/go ~/git/go/src/github.com/embrace-io/
