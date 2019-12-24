@@ -13,11 +13,6 @@ alias bubu='bubo && bubc'
 alias tunnel='python ~/git/embrace/devops/scripts/tunnel.py start'
 alias close_tunnel='python ~/git/embrace/devops/scripts/tunnel.py stop'
 alias editdocker='vim ~/git/embrace/dev/docker-compose.yml'
-#alias cdemb='cd ~/git/embrace && cd '
-. ~/z/z.sh
-function o() {
-  z $1 && open .
-}
 
 EMBRACE_DIR=~/git/embrace
 
@@ -120,33 +115,25 @@ source $ZSH/oh-my-zsh.sh
 
 # Go related stuff
 export GOPATH=~/git/go
-alias goemb="cd $GOPATH/src/github.com/embrace-io/go"
+alias goemb="cdemb go"
 export PATH=$PATH:$GOPATH/bin
 
  # bintray stuff
 export BINTRAY_USER=juansc
 export BINTRAY_KEY=ec07717713e89baefe6b1e8a0d8dd662c17132a9
 
-
-# edx tools
-source $EMBRACE_DIR/embrace-developer-extensions/edx
-
 # Only show the last dir
 POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last
 # Don't show tag for current commit
 POWERLEVEL9K_VCS_HIDE_TAGS=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
 function gocheck() {
   goemb
-  go vet ./... && go test ./... -count=1 && staticcheck ./...
+  go vet ./... && go test ./... 
+  staticcheck ./...
 }
-
-export PATH=$HOME/Library/Python/2.7/bin:$PATH
-
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
@@ -165,4 +152,11 @@ if [ -x "$(command -v rg)" ]; then
     rg -l $1 | xargs sed -i '' "s$1$2g"
   }
 fi
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PATH=/Users/juansc/Library/Python/3.6/bin:$PATH
+. ~/Library/Python/3.6/bin/virtualenvwrapper.sh
+
+# Disable automatically changing directories
+unsetopt auto_cd
 
