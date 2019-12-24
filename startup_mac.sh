@@ -6,6 +6,7 @@ brew cask install iterm2
 brew install diff-so-fancy
 brew install ripgrep
 brew install tree
+brew install go@1.13
 
 # Vim
 mkdir -p ~/.vim/colors
@@ -19,12 +20,6 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 git clone https://github.com/bobthecow/git-flow-completion ~/.oh-my-zsh/custom/plugins/git-flow-completion
-
-# Go Setup
-export GO_TAR=/tmp/go.tar.gz
-curl -L https://dl.google.com/go/go1.13.5.darwin-amd64.tar.gz --output ${GO_TAR}
-sudo tar -C /usr/local -xvzf ${GO_TAR}
-rm ${GO_TAR}
 
 mkdir -p ~/git/go/src/github.com/embrace-io/
 ln -s ~/git/embrace/go ~/git/go/src/github.com/embrace-io/
