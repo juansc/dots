@@ -89,3 +89,6 @@ set splitbelow
 " Removes cursorline. Investigate to see why this is so slow on iTerm2
 set nocursorline
 
+"" Searching options
+set hlsearch
+noremap <F4> :set hlsearch! hlsearch?<CR>
