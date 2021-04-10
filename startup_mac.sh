@@ -3,9 +3,11 @@ xcode-select —-install
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew cask install iterm2
+brew cask install sizeup
 brew install diff-so-fancy
 brew install ripgrep
 brew install tree
+brew install jq
 brew install go@1.13
 
 # Vim
