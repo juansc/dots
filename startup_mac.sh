@@ -1,18 +1,27 @@
-xcode-select —-install
+# Install Brew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# 
+# brew install git
 
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+mkdir -p ~/git
+git clone https://github.com/juansc/dots/ ~/git/dots
+cp ~/git/dots/.gitconfig $HOME/
+cp ~/git/dots/.gitignore_global $HOME/
+cp ~/git/dots/.zshrc $HOME/
 
-brew cask install iterm2
-brew cask install sizeup
+# Vim
+mkdir -p ~/.vim/colors
+curl -s https://raw.githubusercontent.com/sickill/vim-monokai/master/colors/monokai.vim > ~/.vim/colors/monokai.vim
+cp ~/git/dots/.vimrc ~/.vimrc
+
+brew install iterm2
+brew install sizeup
 brew install diff-so-fancy
 brew install ripgrep
 brew install tree
 brew install jq
 brew install go@1.13
 
-# Vim
-mkdir -p ~/.vim/colors
-curl -s https://raw.githubusercontent.com/sickill/vim-monokai/master/colors/monokai.vim > ~/.vim/colors/monokai.vim
 
 ## ZSH Section ##
 brew install zsh
