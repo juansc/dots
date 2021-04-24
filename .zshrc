@@ -1,41 +1,33 @@
 export PATH="/usr/local/bin:/usr/bin/git:/usr/bin:/usr/local/sbin:$PATH"
-# alias git=hub
-alias gc="git checkout"
-alias gcm="git checkout master"
-alias gpull="git pull"
-alias gpush="git push"
-alias gbranch="git checkout -b"
-alias gclone="git clone"
-alias brews='brew list -1'
-alias bubo='brew update && brew outdated'
-alias bubc='brew upgrade && brew cleanup'
-alias bubu='bubo && bubc'
-alias tunnel='python ~/git/embrace/devops/scripts/tunnel.py start'
-alias close_tunnel='python ~/git/embrace/devops/scripts/tunnel.py stop'
-alias editdocker='vim ~/git/embrace/dev/docker-compose.yml'
-
-EMBRACE_DIR=~/git/embrace
 
 # COMPLETION SETTINGS
 # add custom completion scripts
-fpath=(/Users/juansc/.oh-my-zsh/custom/completion $fpath) 
+fpath=($HOME/.oh-my-zsh/custom/completion $fpath) 
 
 # compsys intialization
 autoload -U compinit && compinit
 
-function cdemb() {
-  cd $EMBRACE_DIR && [[ -n "$1" ]] && cd $1
+function last_tags() {
+  # Default to the last 10 tags
+  git tl | grep "$1" | head -n ${2:-10}
 }
 
 function topn() {
     cat "$1" | sort | uniq -c | sort -nr | head -n "$2"
 }
 
+function join_by { local d=$1; shift; local f=$1; shift; printf %s "$f" "${@/#/$d}"; }
+
+function find_file() {
+  search_str="$(join_by "/&&/" $*)"
+  find . | awk "/$search_str/" IGNORECASE=1
+}
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 # *** CHANGE THIS *** Path to your oh-my-zsh installation.
-export ZSH=/Users/juansc/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -118,22 +110,12 @@ export GOPATH=~/git/go
 alias goemb="cdemb go"
 export PATH=$PATH:$GOPATH/bin
 
- # bintray stuff
-export BINTRAY_USER=juansc
-export BINTRAY_KEY=ec07717713e89baefe6b1e8a0d8dd662c17132a9
-
 # Only show the last dir
 POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last
 # Don't show tag for current commit
 POWERLEVEL9K_VCS_HIDE_TAGS=true
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-
-function gocheck() {
-  goemb
-  go vet ./... && go test ./... 
-  staticcheck ./...
-}
 
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
@@ -153,10 +135,5 @@ if [ -x "$(command -v rg)" ]; then
   }
 fi
 
-export WORKON_HOME=$HOME/.virtualenvs
-export PATH=/Users/juansc/Library/Python/3.6/bin:$PATH
-. ~/Library/Python/3.6/bin/virtualenvwrapper.sh
-
 # Disable automatically changing directories
 unsetopt auto_cd
-
