@@ -17,6 +17,7 @@ cp ~/git/dots/.vimrc ~/.vimrc
 brew install iterm2
 brew install sizeup
 brew install diff-so-fancy
+brew install httpie
 brew install ripgrep
 brew install tree
 brew install jq
