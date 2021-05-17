@@ -57,6 +57,7 @@ augroup reload
 
   " Add filetype local behavior.
   autocmd BufWritePost *.go silent execute "!gofmt -s -w %" | redraw!
+  autocmd BufWritePost *.rs silent execute "!rustfmt %" | redraw!
   autocmd FileType css setlocal iskeyword+=-
   autocmd FileType gitcommit,markdown setlocal spell wrap
   autocmd FileType go setlocal noexpandtab
