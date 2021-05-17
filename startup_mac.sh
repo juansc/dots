@@ -22,6 +22,7 @@ brew install ripgrep
 brew install tree
 brew install jq
 brew install go@1.13
+brew install rustup
 
 
 ## ZSH Section ##
