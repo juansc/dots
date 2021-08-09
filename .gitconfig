@@ -43,8 +43,6 @@
 	name = Juan
 [core]
 	excludesfile = ~/.gitignore_global
-  pager = diff-so-fancy | less --tabs=4 -RFX
-#	pager = less --tabs=4 -RFX
 [push]
   default = current
 	followTags = true
@@ -53,4 +51,18 @@
 	newHighlight = green bold 22
 	oldNormal = red bold
 	oldHighlight = red bold 52
-	
+[pager]
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
+  branch = delta
+
+[delta]
+  plus-style = "syntax #012800"
+  minus-style = "syntax #340001"
+  syntax-theme = gruvbox-dark 
+  navigate = true
+
+[interactive]
+  diffFilter = delta --color-only	
