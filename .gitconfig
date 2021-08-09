@@ -1,56 +1,56 @@
 [color]
-	branch = auto
-	ui = true
+  branch = auto
+  ui = true
 [color "branch"]
-	current = yellow bold
-	local = white
-	remote = yellow dim
+  current = yellow bold
+  local = white
+  remote = yellow dim
 [color "diff"]
-	commit = yellow bold
-	frag = magenta bold
-	meta = yellow
-	new = green bold
-	old = red bold
-	whitespace = red reverse
+  commit = yellow bold
+  frag = magenta bold
+  meta = yellow
+  new = green bold
+  old = red bold
+  whitespace = red reverse
 [color "status"]
-	added = cyan bold
-	branch = yellow bold
-	changed = red bold
-	untracked = magenta bold
+  added = cyan bold
+  branch = yellow bold
+  changed = red bold
+  untracked = magenta bold
 [alias]
-	br = branch
-	cm = commit
-	co = checkout
-	cr = checkout -b
-	df = diff
+  br = branch
+  cm = commit
+  co = checkout
+  cr = checkout -b
+  df = diff
   fe = fetch -tpP
-	dfcm = diff --staged
-	last = log --oneline -n 1
-	minlog = log --oneline
-	ml = log --oneline
-	pn = push origin -u HEAD
-	pl = pull
-	ps = push
-	st = status
-	statlog = log --stat
-	sl = log --stat
-	taglist = tag -l --sort=-v:refname
-	tl = tag -l --sort=-v:refname
+  dfcm = diff --staged
+  last = log --oneline -n 1
+  minlog = log --oneline
+  ml = log --oneline
+  pn = push origin -u HEAD
+  pl = pull
+  ps = push
+  st = status
+  statlog = log --stat
+  sl = log --stat
+  taglist = tag -l --sort=-v:refname
+  tl = tag -l --sort=-v:refname
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [user]
-	email = juanscarrillo23@gmail.com
-	name = Juan
+  email = juanscarrillo23@gmail.com
+  name = Juan
 [core]
-	excludesfile = ~/.gitignore_global
+  excludesfile = ~/.gitignore_global
 [push]
   default = current
-	followTags = true
+  followTags = true
 [color "diff-highlight"]
-	newNormal = green bold
-	newHighlight = green bold 22
-	oldNormal = red bold
-	oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+  oldNormal = red bold
+  oldHighlight = red bold 52
 [pager]
   diff = delta
   log = delta
@@ -65,4 +65,4 @@
   navigate = true
 
 [interactive]
-  diffFilter = delta --color-only	
+  diffFilter = delta --color-only  
