@@ -19,6 +19,7 @@ brew install sizeup
 brew install diff-so-fancy
 brew install httpie
 brew install ripgrep
+brew install git-delta
 brew install tree
 brew install jq
 brew install go@1.13
