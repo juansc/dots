@@ -20,6 +20,7 @@ brew install diff-so-fancy
 brew install httpie
 brew install ripgrep
 brew install git-delta
+brew install fd
 brew install tree
 brew install jq
 brew install go@1.13
@@ -39,3 +40,7 @@ git clone https://github.com/bobthecow/git-flow-completion ~/.oh-my-zsh/custom/p
 
 mkdir -p ~/git/go/src/github.com/embrace-io/
 ln -s ~/git/embrace/go ~/git/go/src/github.com/embrace-io/
+
+# Install fonts
+brew tap homebrew/cask-fonts
+brew install --cask font-hack-nerd-font
