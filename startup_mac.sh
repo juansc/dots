@@ -25,7 +25,6 @@ brew install fd
 brew install tree
 brew install jq
 brew install go@1.17
-brew install rustup
 
 
 ## ZSH Section ##
