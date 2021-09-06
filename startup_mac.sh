@@ -1,8 +1,8 @@
 # Install Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # 
-# brew install git
 
+# brew install git
 mkdir -p ~/git
 git clone https://github.com/juansc/dots/ ~/git/dots
 cp ~/git/dots/.gitconfig $HOME/
