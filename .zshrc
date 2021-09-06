@@ -136,4 +136,6 @@ if [ -x "$(command -v rg)" ]; then
 fi
 
 # Disable automatically changing directories
-unsetopt auto_cd
+# unsetopt auto_cd
+
+export CDPATH=".:$HOME/git/"

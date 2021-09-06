@@ -24,7 +24,7 @@ brew install git-delta
 brew install fd
 brew install tree
 brew install jq
-brew install go@1.13
+brew install go@1.17
 brew install rustup
 
 
@@ -39,9 +39,9 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
 git clone https://github.com/bobthecow/git-flow-completion ~/.oh-my-zsh/custom/plugins/git-flow-completion
 
-mkdir -p ~/git/go/src/github.com/embrace-io/
-ln -s ~/git/embrace/go ~/git/go/src/github.com/embrace-io/
-
 # Install fonts
 brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font
+
+# Install Jetbrains IDE
+brew install --cask goland
