@@ -11,8 +11,8 @@ cp ~/git/dots/.zshrc $HOME/
 
 # Vim
 mkdir -p ~/.vim/colors
-curl -s https://raw.githubusercontent.com/sickill/vim-monokai/master/colors/monokai.vim > ~/.vim/colors/monokai.vim
-cp ~/git/dots/.vimrc ~/.vimrc
+cp ~/git/dots/vim/.vimrc ~/.vimrc
+cp ~/git/dots/vim/gruvbox8_hard.vim ~/.vim/colors/
 
 brew install iterm2
 brew install sizeup
