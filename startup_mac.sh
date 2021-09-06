@@ -15,6 +15,7 @@ cp ~/git/dots/vim/.vimrc ~/.vimrc
 cp ~/git/dots/vim/gruvbox8_hard.vim ~/.vim/colors/
 
 brew install iterm2
+brew install gh
 brew install sizeup
 brew install diff-so-fancy
 brew install httpie
