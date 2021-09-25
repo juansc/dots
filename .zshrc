@@ -136,6 +136,6 @@ if [ -x "$(command -v rg)" ]; then
 fi
 
 LOCAL_ZSHRC=$HOME/.local_zshrc
-if [[ -f "$FILE" ]]; then
-    source $FILE
+if [[ -f "$LOCAL_ZSHRC" ]]; then
+    source $LOCAL_ZSHRC
 fi
