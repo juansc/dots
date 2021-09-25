@@ -135,7 +135,7 @@ if [ -x "$(command -v rg)" ]; then
   }
 fi
 
-# Disable automatically changing directories
-# unsetopt auto_cd
-
-export CDPATH=".:$HOME/git/"
+LOCAL_ZSHRC=$HOME/.local_zshrc
+if [[ -f "$FILE" ]]; then
+    source $FILE
+fi
