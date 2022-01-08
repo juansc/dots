@@ -8,12 +8,15 @@ git clone https://github.com/juansc/dots/ ~/git/dots
 cp ~/git/dots/.gitconfig $HOME/
 cp ~/git/dots/.gitignore_global $HOME/
 cp ~/git/dots/.zshrc $HOME/
+cp ~/git/dots/.alacritty.yml $HOME/
+cp ~/git/dots/.tmux.conf $HOME/
 
 # Vim
 mkdir -p ~/.vim/colors
 curl -s https://raw.githubusercontent.com/sickill/vim-monokai/master/colors/monokai.vim > ~/.vim/colors/monokai.vim
 cp ~/git/dots/.vimrc ~/.vimrc
 
+brew install alacritty
 brew install iterm2
 brew install sizeup
 brew install diff-so-fancy
@@ -23,7 +26,7 @@ brew install git-delta
 brew install fd
 brew install tree
 brew install jq
-brew install go@1.13
+brew install go@1.17
 brew install rustup
 
 
