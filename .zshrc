@@ -135,5 +135,7 @@ if [ -x "$(command -v rg)" ]; then
   }
 fi
 
-# Disable automatically changing directories
-unsetopt auto_cd
+LOCAL_ZSHRC=$HOME/.local_zshrc
+if [[ -f "$LOCAL_ZSHRC" ]]; then
+    source $LOCAL_ZSHRC
+fi

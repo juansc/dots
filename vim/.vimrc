@@ -5,7 +5,7 @@ set ruler
 set cursorline
 set wildmenu
 syntax enable
-colorscheme monokai
+colorscheme gruvbox8_hard
 
 " Change backup files to /tmp
 call system('mkdir /tmp/vim/')

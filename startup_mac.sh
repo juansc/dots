@@ -1,8 +1,8 @@
 # Install Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # 
-# brew install git
 
+# brew install git
 mkdir -p ~/git
 git clone https://github.com/juansc/dots/ ~/git/dots
 cp ~/git/dots/.gitconfig $HOME/
@@ -13,11 +13,12 @@ cp ~/git/dots/.tmux.conf $HOME/
 
 # Vim
 mkdir -p ~/.vim/colors
-curl -s https://raw.githubusercontent.com/sickill/vim-monokai/master/colors/monokai.vim > ~/.vim/colors/monokai.vim
-cp ~/git/dots/.vimrc ~/.vimrc
+cp ~/git/dots/vim/.vimrc ~/.vimrc
+cp ~/git/dots/vim/gruvbox8_hard.vim ~/.vim/colors/
 
 brew install alacritty
 brew install iterm2
+brew install gh
 brew install sizeup
 brew install diff-so-fancy
 brew install httpie
@@ -41,9 +42,9 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
 git clone https://github.com/bobthecow/git-flow-completion ~/.oh-my-zsh/custom/plugins/git-flow-completion
 
-mkdir -p ~/git/go/src/github.com/embrace-io/
-ln -s ~/git/embrace/go ~/git/go/src/github.com/embrace-io/
-
 # Install fonts
 brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font
+
+# Install Jetbrains IDE
+brew install --cask goland
