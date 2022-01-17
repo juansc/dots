@@ -30,6 +30,7 @@ brew install jq
 brew install go@1.17
 brew install rustup
 brew install tmux
+brew install neovim
 
 
 ## ZSH Section ##
