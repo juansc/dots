@@ -8,6 +8,8 @@ set directory=/tmp/nvim//
 set undodir=/tmp/nvim//
 set undofile
 set signcolumn=yes
+set cursorline
+
 
 call plug#begin()
 Plug 'itchyny/lightline.vim'
@@ -48,7 +50,25 @@ Plug 'nvim-telescope/telescope.nvim'
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+" Go Debugger
+Plug 'sebdah/vim-delve'
+Plug 'fatih/vim-go'
 call plug#end()
+
+" Go Syntax
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+
+" Auto formatting and importing
+let g:go_fmt_autosave = 1
+let g:go_fmt_command = "goimports"
+
+" Status line types/signatures
+let g:go_auto_type_info = 1
+
 
 
 " Highlight yank. Note that this will only flash the selection
