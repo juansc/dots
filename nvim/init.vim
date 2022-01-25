@@ -7,6 +7,7 @@ call system('mkdir /tmp/nvim/')
 set directory=/tmp/nvim//
 set undodir=/tmp/nvim//
 set undofile
+set signcolumn=yes
 
 call plug#begin()
 Plug 'itchyny/lightline.vim'
