@@ -8,7 +8,6 @@ set directory=/tmp/nvim//
 set undodir=/tmp/nvim//
 set undofile
 set signcolumn=yes
-set cursorline
 
 
 call plug#begin()
@@ -53,6 +52,9 @@ Plug 'junegunn/fzf.vim'
 " Go Debugger
 Plug 'sebdah/vim-delve'
 Plug 'fatih/vim-go'
+
+Plug 'jesseleite/vim-agriculture'
+
 call plug#end()
 
 " Go Syntax
