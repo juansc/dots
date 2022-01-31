@@ -1,11 +1,13 @@
 " Enable default settings.
 filetype plugin indent on
 set number
+set relativenumber
 set ruler
 set cursorline
 set wildmenu
 syntax enable
 colorscheme gruvbox8_hard
+set background=dark
 
 " Change backup files to /tmp
 call system('mkdir /tmp/vim/')
@@ -16,15 +18,18 @@ set undofile
 " Reload the current buffer if changed externally.
 set autoread
 
+" 
+set cmdheight=2
+set updatetime=300
+set scrolloff=2
+set signcolumn=yes
+
 " Auto indent with 2 spaces.
 " set smartindent
 filetype plugin indent on
 set shiftwidth=2
 set tabstop=2
 set expandtab
-
-" Use ^o to togger insert (paste) mode.
-set pastetoggle=<C-o>
 
 " Map ^hjkl to move between window panes.
 map <C-h> <C-w>h
