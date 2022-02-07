@@ -1,4 +1,5 @@
 export PATH="/usr/local/bin:/usr/bin/git:/usr/bin:/usr/local/sbin:$PATH"
+export TERM="xterm-256color"
 
 # COMPLETION SETTINGS
 # add custom completion scripts
