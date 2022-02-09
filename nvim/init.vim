@@ -132,9 +132,9 @@ lua <<EOF
 local cmp = require'cmp'
 cmp.setup({
   enabled = function()
+      -- return false
       local context = require 'cmp.config.context'
-      --return not context.in_treesitter_capture("comment") stop telling me to what to write
-      return not context.in_syntax_group("Comment")
+      return not context.in_syntax_group("Comment") 
   end,
   -- Enable LSP snippets
   snippet = {
@@ -274,6 +274,4 @@ nvim_lsp.gopls.setup{
     end
   end
 
---vim.lsp.set_log_level("debug")
 EOF
-
