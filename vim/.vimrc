@@ -5,6 +5,7 @@ set relativenumber
 set ruler
 set cursorline
 set wildmenu
+set scrolloff=2
 syntax enable
 colorscheme gruvbox8_hard
 set background=dark
