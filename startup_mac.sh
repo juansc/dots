@@ -50,3 +50,9 @@ brew install --cask font-hack-nerd-font
 
 # Install Jetbrains IDE
 brew install --cask goland
+
+# Link files so that 
+ln -s $(pwd)/.alacritty.yml $HOME/.alacritty.yml
+ln -s $(pwd)/vim/.vimrc $HOME/.vimrc
+ln -s $(pwd)/nvim/init.vim $HOME/.config/nvim/init.vim
+ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
