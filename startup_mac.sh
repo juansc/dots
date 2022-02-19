@@ -2,19 +2,23 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # 
 
+# Check if git exists and install using Xcode Tools if not present 
+git --version 
+
 # brew install git
 mkdir -p ~/git
-git clone https://github.com/juansc/dots/ ~/git/dots
-cp ~/git/dots/.gitconfig $HOME/
-cp ~/git/dots/.gitignore_global $HOME/
-cp ~/git/dots/.zshrc $HOME/
-cp ~/git/dots/.alacritty.yml $HOME/
-cp ~/git/dots/.tmux.conf $HOME/
+DOTS_DIR=~/git/dots/
+git clone https://github.com/juansc/dots/ ${DOTS_DIR}
+cp ${DOTS_DIR}/.gitconfig ${HOME}/
+cp ${DOTS_DIR}/.gitignore_global ${HOME}/
+cp ${DOTS_DIR}/.zshrc ${HOME}/
+cp ${DOTS_DIR}/.alacritty.yml ${HOME}/
+cp ${DOTS_DIR}/.tmux.conf ${HOME}/
 
 # Vim
 mkdir -p ~/.vim/colors
-cp ~/git/dots/vim/.vimrc ~/.vimrc
-cp ~/git/dots/vim/gruvbox8_hard.vim ~/.vim/colors/
+cp ${DOTS_DIR}/vim/.vimrc ~/.vimrc
+cp ${DOTS_DIR}/vim/gruvbox8_hard.vim ~/.vim/colors/
 
 brew install alacritty
 brew install iterm2
@@ -42,7 +46,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
-git clone https://github.com/bobthecow/git-flow-completion ~/.oh-my-zsh/custom/plugins/git-flow-completion
+git clone https://github.com/bobthecow/git-flow-completion ${ZSH_CUSTOM}/plugins/git-flow-completion
 
 # Install fonts
 brew tap homebrew/cask-fonts
@@ -52,7 +56,8 @@ brew install --cask font-hack-nerd-font
 brew install --cask goland
 
 # Link files so that 
-ln -s $(pwd)/.alacritty.yml $HOME/.alacritty.yml
-ln -s $(pwd)/vim/.vimrc $HOME/.vimrc
-ln -s $(pwd)/nvim/init.vim $HOME/.config/nvim/init.vim
-ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
+ln -sf ${DOTS_DIR}/.alacritty.yml ${HOME}/.alacritty.yml
+ln -sf ${DOTS_DIR}/vim/.vimrc ${HOME}/.vimrc
+mkdir -p ${HOME}/.config/nvim/
+ln -sf ${DOTS_DIR}/nvim/init.vim ${HOME}/.config/nvim/init.vim
+ln -sf ${DOTS_DIR}/.tmux.conf ${HOME}/.tmux.conf
