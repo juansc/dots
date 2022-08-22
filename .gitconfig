@@ -19,11 +19,16 @@
   untracked = magenta bold
 [alias]
   br = branch
+  cat = "!f() { \
+    ext=$(echo "$2" | rev | cut -s -d '.' -f1 | rev); \
+	  args=${ext:+-l$ext}; \
+	  git show \"$1:$2\" | bat --style=plain $args; \
+  }; f"
   cm = commit
   co = checkout
   cr = checkout -b
   df = diff
-  fe = fetch -tpP
+  fe = fetch -tpP origin
   dfcm = diff --staged
   last = log --oneline -n 1
   minlog = log --oneline
@@ -33,9 +38,17 @@
   ps = push
   st = status
   statlog = log --stat
+  start = "!f() { \
+    name=$(echo "$1" | sed "s/^EMB-//"); \
+    git cr juansc/EMB-$name${2+-}$2; \
+  }; f"
   sl = log --stat
   taglist = tag -l --sort=-v:refname
   tl = tag -l --sort=-v:refname
+  wip = cm -m "wip" --no-verify
+  workon = "!f() { \
+    git checkout $(git branch | grep \"EMB-$1\" | head -n1); \
+  }; f"
 [credential]
   helper = osxkeychain
 [user]
@@ -43,6 +56,7 @@
   name = Juan
 [core]
   excludesfile = ~/.gitignore_global
+	editor = nvim
 [push]
   default = current
   followTags = true
@@ -67,5 +81,3 @@
 
 [interactive]
   diffFilter = delta --color-only  
-[init]
-  defaultBranch = main
