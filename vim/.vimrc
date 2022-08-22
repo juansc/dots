@@ -10,6 +10,8 @@ syntax enable
 colorscheme gruvbox8_hard
 set background=dark
 
+set nofixendofline
+
 " Change backup files to /tmp
 call system('mkdir /tmp/vim/')
 set directory=/tmp/vim//

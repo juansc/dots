@@ -1,0 +1,48 @@
+function splitlinesbydelim() {
+  sed "s/$1/\n/g"
+}
+
+function cdemb() {
+  cd $EMBRACE_DIR/$1 # && [[ -n "$1" ]] && cd $1
+}
+
+function parse_cass() {
+  cat $1 | xxd -p -r | zstd -d
+}
+
+function parse_noz_cass() {
+  cat $1 | xxd -p -r 
+}
+
+function last_tags() {
+  # Default to the last 10 tags
+  git tl | grep "$1" | head -n ${2:-10}
+}
+
+function topn() {
+    cat "$1" | sort | uniq -c | sort -nr | head -n "$2"
+}
+
+# Use ripgrep with sed if installed.
+# Usage: rgs OldPattern NewPattern
+#        rgs apricott apricot
+# Courtesy of @arkie
+if [ -x "$(command -v rg)" ]; then
+  rgs(){
+    rg -l $1 | xargs sed -i '' "s$1$2g"
+  }
+fi
+
+function notebook() {
+  cd ~/git/embrace/scratch
+  jupyter notebook
+}
+
+function git-cat() {
+  ext=$(echo "$2" | rev | cut -s -d '.' -f1 | rev)
+  args=
+  if [[ ! -z $ext ]]; then
+    args="-l$ext"
+  fi
+  git show "$1:$2" | bat --style=plain $args
+}
