@@ -18,6 +18,10 @@
   changed = red bold
   untracked = magenta bold
 [alias]
+  authors = "!f() { \
+    since_date=$(gdate "+%Y-%m-%d" --date='-365 day'); \
+    git shortlog --since=\"$since_date\" -n -s $1; \
+  }; f"
   br = branch
   cat = "!f() { \
     ext=$(echo "$2" | rev | cut -s -d '.' -f1 | rev); \
@@ -31,6 +35,9 @@
   fe = fetch -tpP origin
   dfcm = diff --staged
   last = log --oneline -n 1
+  lasttags = "!f() { \
+    git tl | grep ${1:-''} | head -n ${2:-10}; \
+  }; f"
   minlog = log --oneline
   ml = log --oneline
   pn = push origin -u HEAD
@@ -68,6 +75,7 @@
 [pager]
   diff = delta
   log = delta
+  shortlog = cat
   reflog = delta
   show = delta
   branch = delta
