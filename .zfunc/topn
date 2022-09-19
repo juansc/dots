@@ -1,0 +1,8 @@
+# if std is not pipe
+if [[ -t 0 ]]
+then
+  sort $2 | uniq -c | sort -nr | head -n ${2:-5}
+# else if std is pipe
+else
+  sort | uniq -c | sort -nr | head -n ${1:-5}
+fi

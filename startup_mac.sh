@@ -1,24 +1,28 @@
+#!/bin/zsh
 # Install Brew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if ! command -v brew &> /dev/null 
+then
+  /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+  echo 'brew already installed. Skipping...'
+fi
 # 
 
 # Check if git exists and install using Xcode Tools if not present 
 git --version 
 
-# brew install git
+# install the rest of the repo if not present 
 mkdir -p ~/git
-DOTS_DIR=~/git/dots/
-git clone https://github.com/juansc/dots/ ${DOTS_DIR}
-cp ${DOTS_DIR}/.gitconfig ${HOME}/
-cp ${DOTS_DIR}/.gitignore_global ${HOME}/
-cp ${DOTS_DIR}/.zshrc ${HOME}/
-cp ${DOTS_DIR}/.alacritty.yml ${HOME}/
-cp ${DOTS_DIR}/.tmux.conf ${HOME}/
+DOTS_DIR=~/git/dots
+if [[ -d $DOTS_DIR ]]
+then
+  echo 'Dots directory already present at ${DOTS_DIR}. Skipping...'
+else
+  git clone https://github.com/juansc/dots/ ${DOTS_DIR}
+fi
 
-# Vim
-mkdir -p ~/.vim/colors
-cp ${DOTS_DIR}/vim/.vimrc ~/.vimrc
-cp ${DOTS_DIR}/vim/gruvbox8_hard.vim ~/.vim/colors/
+# symlink files in this directory
+. ${DOTS_DIR}/link_files.sh
 
 brew install alacritty
 brew install iterm2
@@ -54,10 +58,3 @@ brew install --cask font-hack-nerd-font
 
 # Install Jetbrains IDE
 brew install --cask goland
-
-# Link files so that 
-ln -sf ${DOTS_DIR}/.alacritty.yml ${HOME}/.alacritty.yml
-ln -sf ${DOTS_DIR}/vim/.vimrc ${HOME}/.vimrc
-mkdir -p ${HOME}/.config/nvim/
-ln -sf ${DOTS_DIR}/nvim/init.vim ${HOME}/.config/nvim/init.vim
-ln -sf ${DOTS_DIR}/.tmux.conf ${HOME}/.tmux.conf
