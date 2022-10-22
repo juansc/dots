@@ -16,6 +16,8 @@ au BufRead,BufNewFile Dockerfile.* setfiletype Dockerfile
 call plug#begin()
 Plug 'itchyny/lightline.vim'
 Plug 'andymass/vim-matchup'
+Plug 'LunarWatcher/auto-pairs'
+Plug 'airblade/vim-gitgutter'
 
 " Rust LSP Example from https://sharksforarms.dev/posts/neovim-rust/
 " Collection of common configurations for the Nvim LSP client
@@ -62,10 +64,16 @@ call plug#end()
 
 " Go Syntax
 let g:go_highlight_fields = 1
+let g:go_highlight_format_strings = 1
 let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 1
 let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_operators = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
+let g:go_highlight_format_strings = 1
 
 " Auto formatting and importing
 let g:go_fmt_autosave = 1
@@ -74,6 +82,12 @@ let g:go_fmt_command = "goimports"
 " Status line types/signatures
 let g:go_auto_type_info = 1
 
+" Vim Gutter Modifiers
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '>'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '^'
+let g:gitgutter_sign_modified_removed = '<'
 
 
 " Highlight yank. Note that this will only flash the selection
@@ -277,3 +291,16 @@ nvim_lsp.gopls.setup{
   end
 
 EOF
+
+lua <<EOF
+-- Add custom functions here
+vim.api.nvim_create_user_command('Nocmp', 
+  function ()
+      require('cmp').setup {enabled = false}
+    end, {}
+)
+EOF
+
+
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
