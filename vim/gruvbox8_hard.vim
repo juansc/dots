@@ -11,7 +11,7 @@
 hi clear
 let g:colors_name = 'gruvbox8_hard'
 
-let s:t_Co = exists('&t_Co') && !empty(&t_Co) && &t_Co > 1 ? &t_Co : 2
+let s:t_Co = 256
 let s:italics = (&t_ZH != '' && &t_ZH != '[7m') || has('gui_running') || has('nvim')
 
 let s:italics = s:italics && get(g:, 'gruvbox_italics', 1)

@@ -7,13 +7,15 @@ call system('mkdir /tmp/nvim/')
 set directory=/tmp/nvim//
 set undodir=/tmp/nvim//
 set undofile
-set signcolumn=yes
 
 " 
 au BufRead,BufNewFile Dockerfile.* setfiletype Dockerfile
 
 
 call plug#begin()
+
+Plug 'williamboman/mason.nvim'    
+Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'andymass/vim-matchup'
 Plug 'LunarWatcher/auto-pairs'
@@ -35,21 +37,24 @@ Plug 'hrsh7th/cmp-vsnip'
 " Other usefull completion sources
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'hrsh7th/cmp-path'                              
+Plug 'hrsh7th/cmp-buffer'                            
+Plug 'hrsh7th/vim-vsnip'
 
 " See hrsh7th's other plugins for more completion sources!
 
 " To enable more of the features of rust-analyzer, such as inlay hints and more!
-" Broken as of 2022-01-16. Check to see if the issue gets fixed
-Plug 'chen244/rust-tools.nvim', { 'commit': '69272d4ae73be2cd7eaa61abd8fad0151fb662ae' }
-
-" Snippet engine
-Plug 'hrsh7th/vim-vsnip'
+Plug 'simrat39/rust-tools.nvim'
 
 " Fuzzy finder
 " Optional
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
+Plug 'nvim-tree/nvim-tree.lua'
 
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -59,8 +64,117 @@ Plug 'sebdah/vim-delve'
 Plug 'fatih/vim-go'
 
 Plug 'jesseleite/vim-agriculture'
+Plug 'nvim-treesitter/nvim-treesitter'
 
 call plug#end()
+
+lua <<EOF
+require("mason").setup()
+EOF
+
+lua <<EOF
+local rt = require("rust-tools")
+
+rt.setup({
+  server = {
+    on_attach = function(_, bufnr)
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
+})
+EOF
+
+lua <<EOF
+-- LSP Diagnostics Options Setup 
+local sign = function(opts)
+  vim.fn.sign_define(opts.name, {
+    texthl = opts.name,
+    text = opts.text,
+    numhl = ''
+  })
+end
+
+
+sign({name = 'DiagnosticSignError', text = ''})
+sign({name = 'DiagnosticSignWarn', text = ''})
+sign({name = 'DiagnosticSignHint', text = ''})
+sign({name = 'DiagnosticSignInfo', text = ''})
+
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    update_in_insert = true,
+    underline = true,
+    severity_sort = false,
+    float = {
+        border = 'rounded',
+        source = 'always',
+        header = '',
+        prefix = '',
+    },
+})
+
+vim.cmd([[
+set signcolumn=yes:2
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+]])
+EOF
+
+lua <<EOF
+require('nvim-treesitter.configs').setup {
+  ensure_installed = { "lua", "rust", "toml" },
+  auto_install = true,
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting=false,
+  },
+  ident = { enable = true }, 
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil,
+  }
+}
+EOF
+
+lua <<EOF
+require('nvim-tree').setup {
+    sort_by = "case_sensitive",
+    view = {
+        adaptive_size = false,
+        mappings = {
+            list = {
+                { key = "u", action = "dir_up" },
+            },
+        },
+    },
+    renderer = {
+        group_empty = true,
+        icons = {
+            git_placement = "after",
+            glyphs = {
+                git = {
+                    unstaged = "-",
+                    staged = "s",
+                    untracked = "u",
+                    renamed = "r",
+                    deleted = "d",
+                    ignored = "i",
+                },
+            },
+        },
+    },
+    filters = {
+        dotfiles = false,
+    },
+    git = {
+        ignore = false,
+    },
+}
+EOF
 
 " Go Syntax
 let g:go_highlight_fields = 1
@@ -104,55 +218,11 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing extra messages when using completion
 set shortmess+=c
 
-" Configure LSP through rust-tools.nvim plugin.
-" rust-tools will configure and enable certain LSP features for us.
-" See https://github.com/simrat39/rust-tools.nvim#configuration
-lua <<EOF
-local nvim_lsp = require'lspconfig'
-
-local opts = {
-    tools = { -- rust-tools options
-        autoSetHints = true,
-        hover_with_actions = true,
-        inlay_hints = {
-            show_parameter_hints = false,
-            parameter_hints_prefix = "",
-            other_hints_prefix = "",
-        },
-    },
-
-    -- all the opts to send to nvim-lspconfig
-    -- these override the defaults set by rust-tools.nvim
-    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
-    server = {
-        -- on_attach is a callback called when the language server attachs to the buffer
-        -- on_attach = on_attach,
-        settings = {
-            -- to enable rust-analyzer settings visit:
-            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-            ["rust-analyzer"] = {
-                -- enable clippy on save
-                checkOnSave = {
-                    command = "clippy"
-                },
-            }
-        }
-    },
-}
-
-require('rust-tools').setup(opts)
-EOF
-
 " Setup Completion
 " See https://github.com/hrsh7th/nvim-cmp#basic-configuration
 lua <<EOF
 local cmp = require'cmp'
 cmp.setup({
-  enabled = function()
-      -- return false
-      local context = require 'cmp.config.context'
-      return not context.in_syntax_group("Comment") 
-  end,
   -- Enable LSP snippets
   snippet = {
     expand = function(args)
@@ -165,7 +235,7 @@ cmp.setup({
     -- Add tab support
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<Tab>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-S-f>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
@@ -174,15 +244,35 @@ cmp.setup({
       select = true,
     })
   },
-
-  -- Installed sources
+  -- Installed sources:
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'vsnip' },
-    { name = 'path' },
-    { name = 'buffer' },
+    { name = 'path' },                              -- file paths
+    { name = 'nvim_lsp', keyword_length = 3 },      -- from language server
+    { name = 'nvim_lsp_signature_help'},            -- display function signatures with current parameter emphasized
+    { name = 'nvim_lua', keyword_length = 2},       -- complete neovim's Lua runtime API such vim.lsp.*
+    { name = 'buffer', keyword_length = 2 },        -- source current buffer
+    { name = 'vsnip', keyword_length = 2 },         -- nvim-cmp source for vim-vsnip 
+    { name = 'calc'},                               -- source for math calculation
+  },
+  window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+  },
+  formatting = {
+      fields = {'menu', 'abbr', 'kind'},
+      format = function(entry, item)
+          local menu_icon ={
+              nvim_lsp = 'λ',
+              vsnip = '⋗',
+              buffer = 'Ω',
+              path = '🖫',
+          }
+          item.menu = menu_icon[entry.source.name]
+          return item
+      end,
   },
 })
+
 EOF
 
 
