@@ -126,6 +126,10 @@ EOF
 lua <<EOF
 require('nvim-treesitter.configs').setup {
   ensure_installed = { "lua", "rust", "toml" },
+  -- disable for vim files since there is no way for it to intelligently ignore the LUA sections
+  disable = function(lang, bufnr)
+    return lang == "vim"
+  end,
   auto_install = true,
   highlight = {
     enable = true,
