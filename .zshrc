@@ -140,3 +140,8 @@ LOCAL_ZSHRC=$HOME/.local_zshrc
 if [[ -f "$LOCAL_ZSHRC" ]]; then
     source $LOCAL_ZSHRC
 fi
+
+
+# kitty
+bindkey "\e[1;3D" backward-word # ⌥←
+bindkey "\e[1;3C" forward-word # ⌥→
