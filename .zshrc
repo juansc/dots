@@ -142,5 +142,6 @@ if [[ -f "$LOCAL_ZSHRC" ]]; then
 fi
 
 # Allow skipping words on the command line with Ctrl-Left/Right
+# kitty
 bindkey "\e[1;3D" backward-word # ⌥←
 bindkey "\e[1;3C" forward-word # ⌥→
