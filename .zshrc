@@ -140,3 +140,7 @@ LOCAL_ZSHRC=$HOME/.local_zshrc
 if [[ -f "$LOCAL_ZSHRC" ]]; then
     source $LOCAL_ZSHRC
 fi
+
+# Allow skipping words on the command line with Ctrl-Left/Right
+bindkey "\e[1;3D" backward-word # ⌥←
+bindkey "\e[1;3C" forward-word # ⌥→
