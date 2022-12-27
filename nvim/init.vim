@@ -16,12 +16,14 @@ call plug#begin()
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope-ui-select.nvim'
 
 Plug 'williamboman/mason.nvim'    
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'andymass/vim-matchup'
 Plug 'LunarWatcher/auto-pairs'
+Plug 'github/copilot.vim'
 Plug 'airblade/vim-gitgutter'
 
 " Rust LSP Example from https://sharksforarms.dev/posts/neovim-rust/
@@ -296,6 +298,7 @@ EOF
 lua <<EOF
 -- this is a comment 
 local nvim_lsp = require('lspconfig')
+local rt = require("rust-tools")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -356,6 +359,34 @@ local on_attach = function(client, bufnr)
   end
 end
 
+rt.setup({
+  server = {
+    settings = {
+      ["rust-analyzer"] = {
+        assist = {
+          importEnforceGranularity = true,
+          importPrefix = "crate"
+        },
+        cargo = {
+          allFeatures = true
+        },
+        checkOnSave = {
+          -- default: `cargo check`
+          command = "clippy"
+        },
+      },
+    },
+    on_attach = on_attach,
+    -- on_attach = function(_, bufnr)
+    --   -- Hover actions
+    --   vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+    --   -- Code action groups
+    --   vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    -- end,
+  },
+})
+rt.inlay_hints.enable()
+
 nvim_lsp.gopls.setup{
 	cmd = {'gopls'},
 	-- for postfix snippets and analyzers
@@ -412,8 +443,10 @@ vim.api.nvim_create_user_command('Nocmp',
       require('cmp').setup {enabled = false}
     end, {}
 )
+require("telescope").load_extension("ui-select")
 EOF
 
 
 imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
+
