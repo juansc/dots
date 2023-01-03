@@ -101,5 +101,4 @@ set hlsearch
 noremap <F4> :set hlsearch! hlsearch?<CR>
 
 let mapleader = "-"
-noremap <leader>f :Files<CR>
 noremap <leader>s :Rg 
