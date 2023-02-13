@@ -89,5 +89,9 @@
 
 [interactive]
   diffFilter = delta --color-only  
+[rebase]
+	updateRegs = true
+[github]
+	user = juansc
 [init]
 	defaultBranch = main
