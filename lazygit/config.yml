@@ -1,0 +1,10 @@
+os:
+  editPreset: "nvim"
+  editInTerminal: true
+
+customCommands:
+  - key: "G"
+    command: "gh pr view -w {{.SelectedLocalBranch.Name}}"
+    context: "localBranches"
+    description: "Go to PR in github"
+    stream: true

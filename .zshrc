@@ -1,5 +1,6 @@
 export PATH="/usr/local/bin:/usr/bin/git:/usr/bin:/usr/local/sbin:$PATH"
 export TERM="xterm-256color"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # COMPLETION SETTINGS
 # add custom completion scripts

@@ -214,14 +214,6 @@ let g:go_fmt_command = "goimports"
 " Status line types/signatures
 let g:go_auto_type_info = 1
 
-" Vim Gutter Modifiers
-let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = '>'
-let g:gitgutter_sign_removed = '-'
-let g:gitgutter_sign_removed_first_line = '^'
-let g:gitgutter_sign_modified_removed = '<'
-
-
 " Highlight yank. Note that this will only flash the selection
 au TextYankPost * silent! lua vim.highlight.on_yank()
 
