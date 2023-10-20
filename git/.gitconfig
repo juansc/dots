@@ -73,11 +73,11 @@
   oldNormal = red bold
   oldHighlight = red bold 52
 [pager]
-  diff = delta
-  log = delta
-  shortlog = cat
-  reflog = delta
-  show = delta
+  #diff = delta
+  # log = delta
+  # shortlog = cat
+  # reflog = delta
+  # show = delta
   branch = delta
 
 [delta]
@@ -85,7 +85,8 @@
   minus-style = "syntax #340001"
   syntax-theme = gruvbox-dark 
   navigate = true
-  # side-by-side = true
+  line-numbers = true
+  side-by-side = true
 
 [interactive]
   diffFilter = delta --color-only  
