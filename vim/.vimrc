@@ -79,12 +79,6 @@ endif
 
 autocmd BufNewFile,BufRead Vagrantfile   set syntax=ruby
 
-" Disables arrow keys
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-
 " Allows mouse scrolling and highlighting text by clicking
 set mouse=a
 set nowrap
