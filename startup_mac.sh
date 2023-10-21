@@ -39,6 +39,7 @@ brew install go@1.17
 brew install rustup
 brew install tmux
 brew install neovim
+brew install lazygit
 
 
 ## ZSH Section ##

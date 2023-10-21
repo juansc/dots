@@ -14,5 +14,7 @@ mkdir -p ${HOME}/.vim/colors
 ln -sf ${DOTS_DIR}/vim/gruvbox8_hard.vim ${HOME}/.vim/colors/gruvbox8_hard.vim
 # tmux
 ln -sf ${DOTS_DIR}/.tmux.conf ${HOME}/.tmux.conf
+# lazygit
+ln -sf ${DOTS_DIR}/.tmux.conf ${HOME}/.config/lazygit.yml
 # custom functions
 ln -sf ${DOTS_DIR}/.zfunc ${HOME}/.zfunc
