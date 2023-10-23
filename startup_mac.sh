@@ -2,7 +2,8 @@
 # Install Brew
 if ! command -v brew &> /dev/null 
 then
-  /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo "Will install brew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
   echo 'brew already installed. Skipping...'
 fi

@@ -2,6 +2,7 @@
 DOTS_DIR=${HOME}/git/dots
 # Alacritty
 ln -sf ${DOTS_DIR}/.alacritty.yml ${HOME}/.alacritty.yml
+mkdir -p ${HOME}/.config/kitty
 ln -sf ${DOTS_DIR}/kitty/kitty.conf ${HOME}/.config/kitty/kitty.conf
 # git
 ln -sf ${DOTS_DIR}/git/.gitconfig ${HOME}/.gitconfig
@@ -15,6 +16,8 @@ ln -sf ${DOTS_DIR}/vim/gruvbox8_hard.vim ${HOME}/.vim/colors/gruvbox8_hard.vim
 # tmux
 ln -sf ${DOTS_DIR}/.tmux.conf ${HOME}/.tmux.conf
 # lazygit
-ln -sf ${DOTS_DIR}/lazygit/lazygit.yml ${HOME}/.config/lazygit.yml
+mkdir -p ${HOME}/.config/lazygit
+ln -sf ${DOTS_DIR}/lazygit/config.yml ${HOME}/.config/lazygit/config.yml
 # custom functions
 ln -sf ${DOTS_DIR}/.zfunc ${HOME}/.zfunc
+ln -sf ${DOTS_DIR}/.zshrc ${HOME}/.zshrc
