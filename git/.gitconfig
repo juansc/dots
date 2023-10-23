@@ -73,11 +73,11 @@
   oldNormal = red bold
   oldHighlight = red bold 52
 [pager]
-  #diff = delta
-  # log = delta
-  # shortlog = cat
-  # reflog = delta
-  # show = delta
+  diff = delta
+  log = delta
+  shortlog = cat
+  reflog = delta
+  show = delta
   branch = delta
 
 [delta]

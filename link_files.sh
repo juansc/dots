@@ -4,8 +4,8 @@ DOTS_DIR=${HOME}/git/dots
 ln -sf ${DOTS_DIR}/.alacritty.yml ${HOME}/.alacritty.yml
 ln -sf ${DOTS_DIR}/kitty/kitty.conf ${HOME}/.config/kitty/kitty.conf
 # git
-ln -sf ${DOTS_DIR}/.gitconfig ${HOME}/.gitconfig
-ln -sf ${DOTS_DIR}/.gitignore_global ${HOME}/.gitignore_global
+ln -sf ${DOTS_DIR}/git/.gitconfig ${HOME}/.gitconfig
+ln -sf ${DOTS_DIR}/git/.gitignore_global ${HOME}/.gitignore_global
 # vim stuff
 ln -sf ${DOTS_DIR}/vim/.vimrc ${HOME}/.vimrc
 mkdir -p ${HOME}/.config/nvim/
