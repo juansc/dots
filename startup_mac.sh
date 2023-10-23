@@ -42,6 +42,9 @@ brew install tmux
 brew install neovim
 brew install lazygit
 
+brew install --cask 1password
+brew install --cask notion
+
 
 ## ZSH Section ##
 ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
