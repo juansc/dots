@@ -15,3 +15,6 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
 vim.keymap.set("n", "<leader>trn", ":set relativenumber!<CR>")
+
+-- Typing jk in insert mode rapid succession will exit
+vim.keymap.set("i", "jk", "<ESC>")
