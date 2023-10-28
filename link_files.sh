@@ -21,3 +21,4 @@ ln -sf ${DOTS_DIR}/lazygit/config.yml ${HOME}/.config/lazygit/config.yml
 # custom functions
 ln -sf ${DOTS_DIR}/.zfunc ${HOME}/.zfunc
 ln -sf ${DOTS_DIR}/.zshrc ${HOME}/.zshrc
+ln -sf ${DOTS_DIR}/nvim/ ${HOME}/.config/nvim/
