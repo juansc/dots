@@ -13,3 +13,5 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- Hitting leader+p will keep the current selection in
 -- the buffer instead of replacing it with whatever you pasted over
 vim.keymap.set("x", "<leader>p", "\"_dP")
+
+vim.keymap.set("n", "<leader>trn", ":set relativenumber!<CR>")
