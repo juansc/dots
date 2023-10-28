@@ -26,6 +26,8 @@ fi
 . ${DOTS_DIR}/link_files.sh
 
 brew install alacritty
+brew install bat
+brew install asdf
 brew install iterm2
 brew install gh
 brew install sizeup
@@ -36,7 +38,6 @@ brew install git-delta
 brew install fd
 brew install tree
 brew install jq
-brew install go@1.17
 brew install rustup
 brew install tmux
 brew install neovim
