@@ -4,7 +4,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # COMPLETION SETTINGS
 # add custom completion scripts
-fpath=($HOME/.oh-my-zsh/custom/completion $fpath) 
+fpath=($HOME/.zfunc $HOME/.oh-my-zsh/custom/completion $fpath) 
 
 # compsys intialization
 autoload -U compinit && compinit
@@ -111,6 +111,7 @@ source $ZSH/oh-my-zsh.sh
 export GOPATH=~/git/go
 alias goemb="cdemb go"
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:~/bin/
 
 # Only show the last dir
 POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last
@@ -146,3 +147,30 @@ fi
 # kitty
 bindkey "\e[1;3D" backward-word # ⌥←
 bindkey "\e[1;3C" forward-word # ⌥→
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+cdpath=($HOME/git/embrace)
+
+autoload -U ~/.zfunc/*(.:t)
+
+# Go stuff
+GOPATH=$HOME/git/go
+GOPRIVATE=github.com/embrace-io
+
+export RESOURCE_ROOT_PATH=$HOME/git/embrace/go
+
+# MASON junk to see if rust analyzer will get picked up
+# export PATH="$HOME/.local/share/nvim/mason/bin/:$PATH"
+
+alias lg=lazygit
+
+# Load pyenv automatically by appending
+# the following to
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion

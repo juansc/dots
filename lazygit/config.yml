@@ -8,6 +8,11 @@ customCommands:
     context: "localBranches"
     description: "Go to PR in github"
     stream: true
+  - key: "<c-f>"
+    command: "git fe"
+    context: "localBranches"
+    description: "Run git fetch -tpP origin"
+    stream: true
 
 git:
   paging:
