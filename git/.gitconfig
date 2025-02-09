@@ -26,9 +26,10 @@
   cat = "!f() { \
     ext=$(echo "$2" | rev | cut -s -d '.' -f1 | rev); \
 	  args=${ext:+-l$ext}; \
-	  git show \"$1:$2\" | bat --style=plain $args; \
+                git show \"$1:$2\"; \
   }; f"
   cm = commit
+  cmempty = commit --allow-empty -n -m "empty commit to build"
   co = checkout
   cr = checkout -b
   df = diff
@@ -63,7 +64,7 @@
   name = Juan
 [core]
   excludesfile = ~/.gitignore_global
-	editor = nvim
+  editor = hx
 [push]
   default = current
   followTags = true
@@ -79,7 +80,6 @@
   reflog = delta
   show = delta
   branch = delta
-
 [delta]
   plus-style = "syntax #012800"
   minus-style = "syntax #340001"
@@ -87,14 +87,13 @@
   navigate = true
   line-numbers = true
   side-by-side = true
-
 [interactive]
   diffFilter = delta --color-only  
 [rebase]
-	updateRegs = true
+  updateRegs = true
 [github]
-	user = juansc
+  user = juansc
 [init]
-	defaultBranch = main
- [url "git@github.com:"]
+  defaultBranch = main
+[url "git@github.com:"]
   insteadOf = https://github.com/
