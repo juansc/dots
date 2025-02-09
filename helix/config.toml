@@ -1,0 +1,36 @@
+theme = "gruvbox_dark_soft"
+
+[editor]
+line-number = "relative"
+bufferline = "multiple"
+# auto-info = false
+shell = [ "zsh", "-ic" ]
+rulers = [120]
+# Minimum severity to show a diagnostic after the end of a line
+end-of-line-diagnostics = "hint"
+[editor.soft-wrap]
+enable=true
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+ret = "goto_word"
+X = ["extend_line_up", "extend_to_line_bounds"]
+A-x = "extend_to_line_bounds"
+
+[keys.select]
+X = ["extend_line_up", "extend_to_line_bounds"]
+A-x = "extend_to_line_bounds"
+
+[keys.normal."space"]
+t = { r = {n = ":toggle line-number relative absolute"}}
+g = {g = [":new", ":insert-output lg", ":buffer-close!", ":redraw"]}
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control", "file-name"]
+
+[editor.inline-diagnostics]
+cursor-line = "error" # Show inline diagnostics when the cursor is on the line
+other-lines = "disable" # Don't expand diagnostics unless the cursor is on the line

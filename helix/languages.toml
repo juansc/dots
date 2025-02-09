@@ -1,0 +1,22 @@
+[[language]]
+name = "typescript"
+language-servers = [ "typescript-language-server",  "eslint"]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "rust"
+[language-server.rust-analyzer]
+timeout = 120
+
+# rust-analyzer docs specify this as `rust-analyzer.check.command`
+[language-server.rust-analyzer.config.check]
+command = "clippy"
+
+[language-server]
+pyright = { command = "pyright-langserver", args = ["--stdio"], config = {} }
+
+[[language]]
+name = "python"
+roots = ["pyproject.toml"]
+language-servers = [ "pyright" ]
