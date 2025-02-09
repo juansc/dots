@@ -19,3 +19,6 @@ ln -sf ${DOTS_DIR}/lazygit/config.yml ${HOME}/.config/lazygit/config.yml
 ln -sf ${DOTS_DIR}/.zfunc ${HOME}/.zfunc
 ln -sf ${DOTS_DIR}/.zshrc ${HOME}/.zshrc
 
+ln -sf ${DOTS_DIR}/wezterm/.wezterm.lua ${HOME}/.wezterm.lua
+ln -sf ${DOTS_DIR}/helix/config.toml ${HOME}/.config/helix/config.toml
+ln -sf ${DOTS_DIR}/helix/languages.toml ${HOME}/.config/helix/languages.toml
