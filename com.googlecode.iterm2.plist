@@ -632,6 +632,8 @@
 	<false/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
+	<key>IRMemory</key>
+	<integer>4</integer>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -866,7 +868,7 @@
 			<key>Cursor Type</key>
 			<integer>2</integer>
 			<key>Custom Command</key>
-			<string>Yes</string>
+			<string>No</string>
 			<key>Custom Directory</key>
 			<string>Recycle</string>
 			<key>Default Bookmark</key>
@@ -1207,6 +1209,8 @@
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
+			<key>Load Shell Integration Automatically</key>
+			<false/>
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
@@ -1964,12 +1968,14 @@
 	</dict>
 	<key>Print In Black And White</key>
 	<true/>
+	<key>RightControl</key>
+	<integer>3</integer>
 	<key>SeparateStatusBarsPerPane</key>
 	<false/>
 	<key>SeparateWindowTitlePerTab</key>
 	<true/>
 	<key>ShowFullScreenTabBar</key>
-	<true/>
+	<false/>
 	<key>ShowNewOutputIndicator</key>
 	<true/>
 	<key>ShowPaneTitles</key>
