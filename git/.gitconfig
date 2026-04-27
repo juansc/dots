@@ -1,3 +1,46 @@
+[alias]
+  authors = "!f() { \
+    since_date=$(gdate "+%Y-%m-%d" --date='-365 day'); \
+    git shortlog --since=\"$since_date\" -n -s $1; \
+  }; f"
+  br = branch
+  cat = "!f() { \
+    ext=$(echo "$2" | rev | cut -s -d '.' -f1 | rev); \
+	  args=${ext:+-l$ext}; \
+                git show \"$1:$2\"; \
+  }; f"
+  cm = commit
+  cmempty = commit --allow-empty -n -m "empty commit to build"
+  co = switch
+  cr = switch -c
+  df = diff
+  fe = fetch -tpP origin
+  dfcm = diff --staged
+  last = log --oneline -n 1
+  lasttags = "!f() { \
+    git tl | grep ${1:-''} | head -n ${2:-10}; \
+  }; f"
+  minlog = log --oneline
+  ml = log --oneline
+  pn = push origin -u HEAD
+  pl = pull
+  ps = push
+  res = restore
+  st = status
+  statlog = log --stat
+  start = "!f() { \
+    name=$(echo "$1" | sed "s/^EMBR-//"); \
+    git cr juansc/EMBR-$name${2+-}$2; \
+  }; f"
+  sl = log --stat
+  taglist = tag -l --sort=-v:refname
+  tl = tag -l --sort=-v:refname
+  wip = cm -m "wip" --no-verify
+  workon = "!f() { \
+    git switch $(git branch | grep \"EMB-$1\" | head -n1); \
+  }; f"
+[branch]
+  sort = -committerdate
 [color]
   branch = auto
   ui = true
@@ -17,83 +60,79 @@
   branch = yellow bold
   changed = red bold
   untracked = magenta bold
-[alias]
-  authors = "!f() { \
-    since_date=$(gdate "+%Y-%m-%d" --date='-365 day'); \
-    git shortlog --since=\"$since_date\" -n -s $1; \
-  }; f"
-  br = branch
-  cat = "!f() { \
-    ext=$(echo "$2" | rev | cut -s -d '.' -f1 | rev); \
-	  args=${ext:+-l$ext}; \
-                git show \"$1:$2\"; \
-  }; f"
-  cm = commit
-  cmempty = commit --allow-empty -n -m "empty commit to build"
-  co = checkout
-  cr = checkout -b
-  df = diff
-  fe = fetch -tpP origin
-  dfcm = diff --staged
-  last = log --oneline -n 1
-  lasttags = "!f() { \
-    git tl | grep ${1:-''} | head -n ${2:-10}; \
-  }; f"
-  minlog = log --oneline
-  ml = log --oneline
-  pn = push origin -u HEAD
-  pl = pull
-  ps = push
-  st = status
-  statlog = log --stat
-  start = "!f() { \
-    name=$(echo "$1" | sed "s/^EMB-//"); \
-    git cr juansc/EMB-$name${2+-}$2; \
-  }; f"
-  sl = log --stat
-  taglist = tag -l --sort=-v:refname
-  tl = tag -l --sort=-v:refname
-  wip = cm -m "wip" --no-verify
-  workon = "!f() { \
-    git checkout $(git branch | grep \"EMB-$1\" | head -n1); \
-  }; f"
-[credential]
-  helper = osxkeychain
-[user]
-  email = juanscarrillo23@gmail.com
-  name = Juan
+[column]
+  ui = auto
 [core]
   excludesfile = ~/.gitignore_global
   editor = hx
-[push]
-  default = current
-  followTags = true
+  # fix : Automatically fix whitespace issues
+  # -indent-with-non-tab : Don't warn when spaces are used for indentation
+  # trailing-space : Warn about trailing whitespace
+  whitespace=fix,-indent-with-non-tab,trailing-space
+[credential]
+  helper = osxkeychain
+[fetch]
+  all = true
+  prune = true
+  pruneTags = true
+[github]
+  user = juansc
+[help]
+  autocorrect = prompt
+[init]
+  defaultBranch = main
+[interactive]
+  diffFilter = delta --color-only  
+  # followTags = true
 [color "diff-highlight"]
   newNormal = green bold
   newHighlight = green bold 22
   oldNormal = red bold
   oldHighlight = red bold 52
+[merge]
+  conflictstyle = zdiff3
+[rebase]
+  updateRegs = true
+[url "git@github.com:"]
+  insteadOf = https://github.com/
 [pager]
+  algorithm = histogram
+  branch = delta
+  colorMoved = plain
   diff = delta
   log = delta
-  shortlog = cat
+  mnemonicPrefix = true
   reflog = delta
+  renames = copies
+  shortlog = cat
   show = delta
-  branch = delta
 [delta]
+  max-line-length = 0
   plus-style = "syntax #012800"
   minus-style = "syntax #340001"
   syntax-theme = gruvbox-dark 
-  navigate = true
   line-numbers = true
-  side-by-side = true
-[interactive]
-  diffFilter = delta --color-only  
+  side-by-side = false
+  # Makes the navigation using n/N easier. This removes the top level line but always includes the file in the hunk.
+  # I found this useful for large files with several hunks.
+  navigate = true
+  file-style = omit
+  hunk-header-style = "file line-number syntax"
+[push]
+  default = simple
+  autoSetupRemote = true
+  followTags = true
 [rebase]
-  updateRegs = true
-[github]
-  user = juansc
-[init]
-  defaultBranch = main
-[url "git@github.com:"]
-  insteadOf = https://github.com/
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+[rerere]
+  enabled = true
+  autoupdate = true
+[submodule]
+  recurse = true
+[tag]
+  sort = version:refname
+[user]
+  email = juanscarrillo23@gmail.com
+  name = Juan

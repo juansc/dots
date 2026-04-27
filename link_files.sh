@@ -19,3 +19,7 @@ ln -sf ${DOTS_DIR}/lazygit/config.yml ${HOME}/.config/lazygit/config.yml
 ln -sf ${DOTS_DIR}/.zfunc ${HOME}/.zfunc
 ln -sf ${DOTS_DIR}/.zshrc ${HOME}/.zshrc
 
+
+# Fish
+ln -sf ${DOTS_DIR}/fish/config.fish ~/.config/fish/config.fish
+ln -sf ${DOTS_DIR}/fish/custom_func.fish ~/.config/fish/functions/custom_func.fish
