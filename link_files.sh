@@ -19,7 +19,8 @@ ln -sf ${DOTS_DIR}/lazygit/config.yml ${HOME}/.config/lazygit/config.yml
 ln -sf ${DOTS_DIR}/.zfunc ${HOME}/.zfunc
 ln -sf ${DOTS_DIR}/.zshrc ${HOME}/.zshrc
 
-
-# Fish
 ln -sf ${DOTS_DIR}/fish/config.fish ~/.config/fish/config.fish
 ln -sf ${DOTS_DIR}/fish/custom_func.fish ~/.config/fish/functions/custom_func.fish
+ln -sf ${DOTS_DIR}/wezterm/.wezterm.lua ${HOME}/.wezterm.lua
+ln -sf ${DOTS_DIR}/helix/config.toml ${HOME}/.config/helix/config.toml
+ln -sf ${DOTS_DIR}/helix/languages.toml ${HOME}/.config/helix/languages.toml

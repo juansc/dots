@@ -111,7 +111,6 @@ source $ZSH/oh-my-zsh.sh
 export GOPATH=~/git/go
 alias goemb="cdemb go"
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:~/bin/
 
 # Only show the last dir
 POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last
@@ -165,12 +164,25 @@ export RESOURCE_ROOT_PATH=$HOME/git/embrace/go
 
 alias lg=lazygit
 
-# Load pyenv automatically by appending
-# the following to
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export EMBRACE_REPO_PREFIX="$HOME/git/embrace"
+
+
+# TODO: Move all Embrace specific commands to their own directory/file
+complete -W "loader/blob/aei+ loader/blob/crash+ loader/crash+ loader/crash/cassandra+ loader/crash/clickhouse+ loader/crash/export+ loader/crash/merger+ loader/crash/tagging+ loader/crash/updater+ loader/crash/user+ loader/digest+ loader/export-upload+ loader/issue+ loader/kafka-mirror+ loader/log+ loader/log/export+ loader/moment+ loader/moment/consolidator+ loader/monitor-runner+ loader/otlp+ loader/otlp/collector+ loader/query_jobs/crash_export+ loader/sdk-data-producer+ loader/session+ loader/session/aei+ loader/session/aei/anr-merger+ loader/session/aei/merger+ loader/session/alert+ loader/session/anr+ loader/session/cassandra+ loader/session/clickhouse+ loader/session/export+ loader/session/network+ loader/session/nsf+ loader/session/span+ loader/session/user+ loader/snowflake+ loader/span+ loader/stream+ service/admin+ service/issue-producer+ service/query+ service/sdk-version+ service/store+ service/stream+ service/symbol+ tool/command-executor+ tool/common-migrations+ tool/db-create+ tool/end-to-end+ tool/internal/raw-to-json+ tool/ios-upload+ tool/migrations+" "go_to_release"
+
+
+
+export ANDROID_DEVICES_CSV=/Users/juansc/git/embrace/go/lib/device/android_devices.csv
+export IOS_NETWORK_ERROR_CODES_CSV=/Users/juansc/git/embrace/go/lib/network/client/ios_error_codes.csv
+export GEOIP_DB_PATH=/Users/juansc/git/embrace/go/lib/location/GeoLite2-City.mmdb
+
+export PATH="/Users/juansc/bin:$PATH"
+
+# Added by Windsurf
+export PATH="/Users/juansc/.codeium/windsurf/bin:$PATH"
