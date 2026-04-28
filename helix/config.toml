@@ -26,7 +26,7 @@ t = { r = {n = ":toggle line-number relative absolute"}}
 g = {g = [":new", ":insert-output lg", ":buffer-close!", ":redraw"]}
 
 [keys.normal."space"."space"]
-c = ":buffer-close"
+c = ":quit"
 d = ":redraw"
 l = ':toggle-option "lsp.display-inlay-hints"'
 q = ":quit-all!"

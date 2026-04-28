@@ -26,6 +26,7 @@ fi
 . ${DOTS_DIR}/link_files.sh
 
 brew install alacritty
+brew install fish
 brew install bat
 brew install asdf
 brew install iterm2

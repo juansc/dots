@@ -4,7 +4,8 @@ local act = wezterm.action
 local config = wezterm.config_builder()
 
 config.scrollback_lines = 10000
-config.default_prog = { '/opt/homebrew/bin/fish'}
+-- config.default_prog = { '/opt/homebrew/bin/fish'}
+config.default_prog = { '/usr/local/bin/fish'}
 config.enable_scroll_bar = true
 
 
