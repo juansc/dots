@@ -25,6 +25,23 @@ A-x = "extend_to_line_bounds"
 t = { r = {n = ":toggle line-number relative absolute"}}
 g = {g = [":new", ":insert-output lg", ":buffer-close!", ":redraw"]}
 
+[keys.normal."space"."space"]
+c = ":buffer-close"
+d = ":redraw"
+l = ':toggle-option "lsp.display-inlay-hints"'
+q = ":quit-all!"
+r = ":reload-all"
+s = ":hsplit"
+S = ":pipe sort"
+v = ":vsplit"
+W = ":write-all!"
+w = ":write"
+x = ":write-quit-all"
+
+[keys.normal."space"."space"."space"]
+r = ":config-reload"
+o = ":config-open"
+
 [editor.cursor-shape]
 insert = "bar"
 
